@@ -1,0 +1,40 @@
+<h2>Users list</h2>
+<div>
+    <label>First name:
+        <input #firstName />
+    </label>
+    <label>Last name:
+        <input #lastName />
+    </label>
+    <label>Username:
+        <input #username />
+    </label>
+    <button (click)="add(firstName.value, lastName.value, username.value); firstName.value=''; lastName.value=''; username.value=''">
+        add
+    </button>
+</div>
+
+<ul class='users'>
+    <li *ngFor='let user of users'
+    [class.selected]='user === selectedUser'
+    (click)=onSelect(user)>
+        <span class='badge'>{{user.id}}</span><span>{{user.username}}</span>
+        <button class='edit' (click)='edit()'>
+            Edit
+        </button>
+        <button class='delete' title='delete user' (click)='deleteUser(user)'>
+            X
+        </button>
+    </li>
+</ul>
+
+<div *ngIf='selectedUser'>
+    <h2>{{selectedUser.username | uppercase}} Details</h2>
+    <div>
+        First Name: {{selectedUser.firstName}}
+    </div>
+    <div>
+        Last Name: {{selectedUser.lastName}}
+    </div>
+    
+</div>
