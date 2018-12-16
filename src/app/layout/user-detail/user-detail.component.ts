@@ -35,7 +35,7 @@ export class UserDetailComponent implements OnInit {
   }
   
   save(): void {
-    console.log('inside user-detail.component.ts' + this.user.id);
+    console.log('inside user-detail.component.ts' + this.user.Id);
     this.userService.updateUser(this.user)
       .subscribe(() => this.onCancelClick())
   }

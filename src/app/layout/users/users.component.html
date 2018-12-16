@@ -16,7 +16,7 @@
 
 <ul class='users'>
     <li *ngFor='let user of users'>
-        <span class='badge'>{{user.id}}</span><span>{{user.username}}</span>
+        <span class='badge'>{{user.Id}}</span><span>{{user.UserName}}</span>
         <button class='edit' mat-button (click)="openDialog(user)" >
             <!--<a routerLink='/detail/{{user.id}}'>Edit</a>-->
             Edit
@@ -26,3 +26,4 @@
         </button>
     </li>
 </ul>
+

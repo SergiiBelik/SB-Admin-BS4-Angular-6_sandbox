@@ -1,21 +1,21 @@
 <div mat-dialog-content>
 
 <div *ngIf='user'>
-    <h2>{{user.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{user.id}}</div>
+    <h2>{{user.UserName | uppercase}} Details</h2>
+    <div><span>id: </span>{{user.Id}}</div>
     <div>
         <label>firstName:
-            <input [(ngModel)] = 'user.firstName' placeholder = 'First Name'>
+            <input [(ngModel)] = 'user.FirstName' placeholder = 'First Name'>
         </label>
     </div>
     <div>
         <label>lasName:
-            <input [(ngModel)] = 'user.lastName' placeholder = 'Last Name'>
+            <input [(ngModel)] = 'user.LastName' placeholder = 'Last Name'>
         </label>
     </div>
     <div>
         <label>username:
-            <input [(ngModel)] = 'user.username' placeholder = 'username'>
+            <input [(ngModel)] = 'user.UserName' placeholder = 'username'>
         </label>
     </div>
     <button (click)='save()'>Save</button>

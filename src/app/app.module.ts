@@ -12,8 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserDetailComponent } from './layout/user-detail/user-detail.component';
 import { AuthGuard } from './shared';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './in-memory-data.service';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -33,9 +33,9 @@ export const createTranslateLoader = (http: HttpClient) => {
         FormsModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(
-            InMemoryDataService, { dataEncapsulation: false}
-        ),
+        // HttpClientInMemoryWebApiModule.forRoot(
+        //     InMemoryDataService, { dataEncapsulation: false}
+        // ),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

@@ -16,8 +16,7 @@ export interface DialogData {
 export class UsersComponent implements OnInit {
     
     users: User[]
-    // id: number
-    // selectedUser: User
+
     
     constructor(private userService: UserService,
                 public dialog: MatDialog) {}
@@ -25,7 +24,7 @@ export class UsersComponent implements OnInit {
     ngOnInit() {
         this.getUsers()
     }
-    
+
     getUsers(): void{
         this.userService.getUsers()
             .subscribe(users => this.users = users)
@@ -35,7 +34,7 @@ export class UsersComponent implements OnInit {
         lastName = lastName.trim()
         username = username.trim()
         if(!firstName || !lastName || !username){ return }
-        this.userService.addUser( {firstName, lastName, username} as User)
+        this.userService.addUser( {firstName, lastName, username} as any)
             .subscribe(user => {
                 this.users.push(user)
             })
@@ -55,11 +54,10 @@ export class UsersComponent implements OnInit {
         //     left: '0'
         // }
         dialogConfig.data = {
-            id: user.id
+            id: user.Id
         }
         
-        const dialogRef = this.dialog.open(
-            UserDetailComponent, dialogConfig)
+        const dialogRef = this.dialog.open(UserDetailComponent, dialogConfig)
         dialogRef.afterClosed().subscribe(
             result => {
                 console.log("The dialog was closed")
