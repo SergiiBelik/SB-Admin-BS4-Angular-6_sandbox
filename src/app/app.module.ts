@@ -5,9 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UserDetailComponent } from './layout/user-detail/user-detail.component';
 import { AuthGuard } from './shared';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -27,6 +30,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     imports: [
         CommonModule,
         BrowserModule,
+        FormsModule,
         BrowserAnimationsModule,
         HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(
@@ -39,9 +43,12 @@ export const createTranslateLoader = (http: HttpClient) => {
                 deps: [HttpClient]
             }
         }),
-        AppRoutingModule
+        AppRoutingModule,
+        MatDialogModule
+        
     ],
-    declarations: [AppComponent],
+    declarations: [AppComponent, UserDetailComponent],
+    entryComponents: [UserDetailComponent],
     providers: [AuthGuard],
     bootstrap: [AppComponent]
 })

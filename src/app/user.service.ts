@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from './user';
+import { tap } from 'rxjs/operators'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -27,6 +28,12 @@ export class UserService {
   
   addUser(user: User): Observable<User>{
     return this.http.post<User>(this.usersUrl, user, httpOptions)
+  }
+  
+  updateUser(user: User): Observable<any>{
+    return this.http.put<User>(this.usersUrl, user, httpOptions).pipe(
+      tap(_=> console.log(`inside user.service: updated user id: ${user.id}`))
+      )
   }
   
   deleteUser(user: User | number): Observable<User>{

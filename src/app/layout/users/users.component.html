@@ -15,11 +15,10 @@
 </div>
 
 <ul class='users'>
-    <li *ngFor='let user of users'
-    [class.selected]='user === selectedUser'
-    (click)=onSelect(user)>
+    <li *ngFor='let user of users'>
         <span class='badge'>{{user.id}}</span><span>{{user.username}}</span>
-        <button class='edit' (click)='edit()'>
+        <button class='edit' mat-button (click)="openDialog(user)" >
+            <!--<a routerLink='/detail/{{user.id}}'>Edit</a>-->
             Edit
         </button>
         <button class='delete' title='delete user' (click)='deleteUser(user)'>
@@ -27,14 +26,3 @@
         </button>
     </li>
 </ul>
-
-<div *ngIf='selectedUser'>
-    <h2>{{selectedUser.username | uppercase}} Details</h2>
-    <div>
-        First Name: {{selectedUser.firstName}}
-    </div>
-    <div>
-        Last Name: {{selectedUser.lastName}}
-    </div>
-    
-</div>

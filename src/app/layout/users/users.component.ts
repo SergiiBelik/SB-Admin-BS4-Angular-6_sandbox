@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { User } from '../../user';
 import { UserService } from '../../user.service';
+import { UserDetailComponent } from '../user-detail/user-detail.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 
+export interface DialogData {
+    id: number
+}
 
 @Component({
     selector: 'app-users-page',
@@ -10,12 +15,12 @@ import { UserService } from '../../user.service';
 })
 export class UsersComponent implements OnInit {
     
-    users: User[];
-    selectedUser: User
+    users: User[]
+    // id: number
+    // selectedUser: User
     
-    constructor(private userService: UserService
-                
-    ) {}
+    constructor(private userService: UserService,
+                public dialog: MatDialog) {}
 
     ngOnInit() {
         this.getUsers()
@@ -41,8 +46,30 @@ export class UsersComponent implements OnInit {
         this.userService.deleteUser(user).subscribe()
     }
     
-
-    onSelect(user: User): void{
-        this.selectedUser = user
+    openDialog(user: User){
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        // dialogConfig.position = {
+        //     top: '0',
+        //     left: '0'
+        // }
+        dialogConfig.data = {
+            id: user.id
+        }
+        
+        const dialogRef = this.dialog.open(
+            UserDetailComponent, dialogConfig)
+        dialogRef.afterClosed().subscribe(
+            result => {
+                console.log("The dialog was closed")
+                this.getUsers()
+            }
+            )
     }
+    
+
+    // onSelect(user: User): void{
+    //     this.selectedUser = user
+    // }
 }
